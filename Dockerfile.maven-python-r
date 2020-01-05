@@ -1,0 +1,7 @@
+FROM pacur/centos-6
+
+# Install Deps
+RUN curl -L "http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo" -o /etc/yum.repos.d/epel-apache-maven.repo && \
+  yum install -y apache-maven python-pip R && \
+  yum clean all
+

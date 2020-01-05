@@ -1,0 +1,47 @@
+targets=(
+    "centos-6"
+    "centos-7"
+)
+pkgname="apache-livy"
+pkgver="0.3.0"
+pkgrel="1"
+pkgdesc="Apache Livy Server"
+pkgdesclong=(
+    "Apachy Livy Server"
+    "(http://livy.io)"
+)
+maintainer="Example <example@pacur.org>"
+arch="all"
+license=("GPLv3")
+section="utils"
+priority="optional"
+url="https://github.com/apache/incubator-livy"
+sources=(
+    "${url}/archive/v${pkgver}.tar.gz"
+)
+hashsums=(
+    "skip"
+)
+depends=(
+  "R"
+  "python-pip"
+)
+build() {
+    # Install Deps
+    curl -L "http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo" -o /etc/yum.repos.d/epel-apache-maven.repo && \
+      yum install -y apache-maven python-pip R && \
+      yum clean all
+
+    # mkdir -p "go/src"
+    # export GOPATH="${srcdir}/go"
+    # mv "${pkgname}-${pkgver}" "go/src"
+    # cd "go/src/${pkgname}-${pkgver}"
+    # go get
+    # go build -a
+}
+
+package() {
+    # cd "${srcdir}/go/src/${pkgname}-${pkgver}"
+    mkdir -p "${pkgdir}/usr/bin"
+    # cp ${pkgname}-${pkgver} ${pkgdir}/usr/bin/${pkgname}
+}
